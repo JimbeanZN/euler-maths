@@ -8,11 +8,19 @@ namespace EulerMaths
   /// Even Fibonacci numbers
   /// <para>https://projecteuler.net/problem=2</para>
   /// </summary>
-  public static class Problem2
+  internal class Problem2 : ProblemBase
   {
-    private const string Problem = "Problem 2";
-    private const string Title = "Even Fibonacci numbers";
+    public Problem2()
+    {
+      Problem = "Problem 2";
+      Title = "Even Fibonacci numbers";
+    }
     
+    protected internal override long Answer()
+    {
+      return GetFibonacciSequence().TakeWhile(n => n < 4000000).Where(n => n % 2 == 0).Sum();
+    }
+
     private static IEnumerable<long> GetFibonacciSequence()
     {
       var first = 0L;
@@ -29,20 +37,6 @@ namespace EulerMaths
         first = second;
         second = current;
       }
-    }
-
-    private static long Answer()
-    {
-      return GetFibonacciSequence().TakeWhile(n => n < 4000000).Where(n => n % 2 == 0).Sum();
-    }
-
-    public static string GetAnswer()
-    {
-      var watch = System.Diagnostics.Stopwatch.StartNew();
-      var answer = Answer();
-      watch.Stop();
-
-      return $"{Problem} - {Title}: {answer}. Execution time in ms: {watch.ElapsedMilliseconds}";
     }
   }
 }
