@@ -6,8 +6,8 @@ namespace EulerMaths
   {
     static void Main(string[] args)
     {
-      Console.WriteLine(Problem1.Answer());
-      Console.WriteLine(Problem2.Answer());
+      Console.WriteLine(Problem1.GetAnswer());
+      Console.WriteLine(Problem2.GetAnswer());
       Console.ReadLine();
     }
   }
