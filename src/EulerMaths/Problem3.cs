@@ -1,4 +1,5 @@
-﻿using EulerMaths.Helpers;
+﻿using System.Linq;
+using EulerMaths.Helpers;
 
 namespace EulerMaths
 {
@@ -16,9 +17,8 @@ namespace EulerMaths
     
     protected internal override long Answer()
     {
-      var primes = Primes.Take(20);
-
-      return 0;
+      const int x = 1326;
+      return Primes.TakeWhile(n => n <= x).Reverse().First(n => x % n == 0);
     }
   }
 }
