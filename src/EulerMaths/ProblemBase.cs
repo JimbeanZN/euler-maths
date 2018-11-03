@@ -1,4 +1,6 @@
-﻿namespace EulerMaths
+﻿using System.Diagnostics;
+
+namespace EulerMaths
 {
   internal abstract class ProblemBase
   {
@@ -9,7 +11,7 @@
 
     public string GetAnswer()
     {
-      var watch = System.Diagnostics.Stopwatch.StartNew();
+      var watch = Stopwatch.StartNew();
       var answer = Answer();
       watch.Stop();
 

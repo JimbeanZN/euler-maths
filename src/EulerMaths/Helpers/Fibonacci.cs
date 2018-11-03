@@ -6,14 +6,19 @@ namespace EulerMaths.Helpers
 {
   internal static class Fibonacci
   {
-    public static IEnumerable<long> Take(int n)
+    public static long At(int index)
     {
-      return GetFibonacciSequence().Take(n).OrderBy(f => f);
+      return Take(index).Max();
+    }
+
+    public static IEnumerable<long> Take(int count)
+    {
+      return GetFibonacciSequence().Take(count);
     }
 
     public static IEnumerable<long> TakeWhile(Func<long, bool> predicate)
     {
-      return GetFibonacciSequence().TakeWhile(predicate).OrderBy(f => f);
+      return GetFibonacciSequence().TakeWhile(predicate);
     }
 
     private static IEnumerable<long> GetFibonacciSequence()

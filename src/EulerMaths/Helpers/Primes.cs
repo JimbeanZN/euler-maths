@@ -6,14 +6,19 @@ namespace EulerMaths.Helpers
 {
   internal static class Primes
   {
+    public static long At(int index)
+    {
+      return Take(index).Max();
+    }
+
     public static IEnumerable<long> Take(int n)
     {
-      return GetPrimeSequence().Take(n).OrderBy(p => p);
+      return GetPrimeSequence().Take(n);
     }
 
     public static IEnumerable<long> TakeWhile(Func<long, bool> predicate)
     {
-      return GetPrimeSequence().TakeWhile(predicate).OrderBy(p => p);
+      return GetPrimeSequence().TakeWhile(predicate);
     }
 
     private static IEnumerable<long> GetPrimeSequence()
