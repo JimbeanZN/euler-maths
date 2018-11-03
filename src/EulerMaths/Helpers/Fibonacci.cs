@@ -8,12 +8,12 @@ namespace EulerMaths.Helpers
   {
     public static IEnumerable<long> Take(int n)
     {
-      return GetFibonacciSequence().Take(n);
+      return GetFibonacciSequence().Take(n).OrderBy(f => f);
     }
 
     public static IEnumerable<long> TakeWhile(Func<long, bool> predicate)
     {
-      return GetFibonacciSequence().TakeWhile(predicate);
+      return GetFibonacciSequence().TakeWhile(predicate).OrderBy(f => f);
     }
 
     private static IEnumerable<long> GetFibonacciSequence()

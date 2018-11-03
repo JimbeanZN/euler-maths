@@ -8,12 +8,12 @@ namespace EulerMaths.Helpers
   {
     public static IEnumerable<long> Take(int n)
     {
-      return GetPrimeSequence().Take(n);
+      return GetPrimeSequence().Take(n).OrderBy(p => p);
     }
 
     public static IEnumerable<long> TakeWhile(Func<long, bool> predicate)
     {
-      return GetPrimeSequence().TakeWhile(predicate);
+      return GetPrimeSequence().TakeWhile(predicate).OrderBy(p => p);
     }
 
     private static IEnumerable<long> GetPrimeSequence()
@@ -37,7 +37,7 @@ namespace EulerMaths.Helpers
       {
         return primeCandidate == 2 ? true : false;
       }
-
+      
       for (var i = 3; (i * i) <= primeCandidate; i += 2)
       {
         if (primeCandidate % i == 0)
