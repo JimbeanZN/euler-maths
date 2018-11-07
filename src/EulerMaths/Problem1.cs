@@ -6,7 +6,7 @@ namespace EulerMaths
   ///   Multiples of 3 and 5
   ///   <para>https://projecteuler.net/problem=1</para>
   /// </summary>
-  internal class Problem1 : ProblemBase
+  internal class Problem1 : ProblemBase<long>
   {
     public Problem1()
     {

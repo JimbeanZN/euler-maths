@@ -7,7 +7,7 @@ namespace EulerMaths
   ///   Largest prime factor
   ///   <para>https://projecteuler.net/problem=3</para>
   /// </summary>
-  internal class Problem3 : ProblemBase
+  internal class Problem3 : ProblemBase<long>
   {
     public Problem3()
     {

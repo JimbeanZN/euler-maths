@@ -9,6 +9,7 @@ namespace EulerMaths
       Console.WriteLine(new Problem1().GetAnswer());
       Console.WriteLine(new Problem2().GetAnswer());
       Console.WriteLine(new Problem3().GetAnswer());
+      Console.WriteLine(new Problem4().GetAnswer());
       Console.ReadLine();
     }
   }

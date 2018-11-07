@@ -7,7 +7,7 @@ namespace EulerMaths
   ///   Even Fibonacci numbers
   ///   <para>https://projecteuler.net/problem=2</para>
   /// </summary>
-  internal class Problem2 : ProblemBase
+  internal class Problem2 : ProblemBase<long>
   {
     public Problem2()
     {
