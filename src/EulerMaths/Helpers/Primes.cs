@@ -23,8 +23,8 @@ namespace EulerMaths.Helpers
 
     private static IEnumerable<long> GetPrimeSequence()
     {
-      var primeCandidate = 0L;
-      
+      var primeCandidate = 2L;
+
       while (true)
       {
         if (IsPrime(primeCandidate))
@@ -38,20 +38,7 @@ namespace EulerMaths.Helpers
 
     private static bool IsPrime(long primeCandidate)
     {
-      if ((primeCandidate & 1) == 0)
-      {
-        return primeCandidate == 2 ? true : false;
-      }
-      
-      for (var i = 3; (i * i) <= primeCandidate; i += 2)
-      {
-        if (primeCandidate % i == 0)
-        {
-          return false;
-        }
-      }
-
-      return primeCandidate != 1;
+      return Enumerable.Range(2, (int) Math.Sqrt(primeCandidate) - 1).All(divisor => primeCandidate % divisor != 0);
     }
   }
 }

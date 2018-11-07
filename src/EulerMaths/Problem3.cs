@@ -17,8 +17,8 @@ namespace EulerMaths
 
     protected internal override long Answer()
     {
-      const int x = 13261326;
-      return Primes.TakeWhile(n => n <= x).Reverse().First(n => x % n == 0);
+      const long x = 600851475143;
+      return Primes.Take(1000).Reverse().First(n => x % n == 0);
     }
   }
 }
