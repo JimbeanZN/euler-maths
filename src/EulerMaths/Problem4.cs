@@ -9,7 +9,7 @@ namespace EulerMaths
   ///   Largest palindrome product
   ///   <para>https://projecteuler.net/problem=4</para>
   /// </summary>
-  internal class Problem4 : ProblemBase<Tuple<int, int, int, int>>
+  internal class Problem4 : ProblemBase<(int first, int second, int product, int palidrome)>
   {
     public Problem4()
     {
@@ -27,23 +27,18 @@ namespace EulerMaths
         $"{Problem} - {Title}: {answer.Item3} ({answer.Item1} * {answer.Item2}). Execution time in ms: {watch.ElapsedMilliseconds}";
     }
 
-    protected internal override Tuple<int, int, int, int> Answer()
+    protected internal override (int first, int second, int product, int palidrome) Answer()
     {
-      var answers = new List<Tuple<int, int, int, int>>();
-      var o = 900;
-      var m = 999;
-      for (var i = o; i <= m; i++)
-      {
-        for (var j = o; j < m; j++)
-        {
-          var x = i* j;
-          var y = Convert.ToInt32(x.ToString().Reverse().Aggregate("", (current, z) => current + z));
+      const int start = 900;
+      const int count = 99;
+      
+      var answers = from outer in Enumerable.Range(start, count)
+                    from inner in Enumerable.Range(start, count)
+                    let product = outer * inner
+                    let palindrome = Convert.ToInt32(product.ToString().Reverse().Aggregate("", (current, z) => current + z))
+                    select (outer, inner, product, palindrome);
 
-          answers.Add(new Tuple<int, int, int, int>(i, j, x, y));
-        }
-      }
-
-      return answers.Where(n => n.Item3 == n.Item4).Max();
+      return answers.Last(n => n.product == n.palindrome);
     }
   }
 }
