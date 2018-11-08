@@ -18,7 +18,7 @@ namespace EulerMaths
 
     protected internal override long Answer()
     {
-      var divisorRange = Enumerable.Range(1, 19).ToList();
+      var divisorRange = Enumerable.Range(1, 20).ToList();
       var max = divisorRange.Max();
       return CustomRange(max, n => n + max).FirstOrDefault(n => divisorRange.All(divisor => n % divisor == 0));
     }
