@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -31,12 +30,12 @@ namespace EulerMaths
     {
       const int start = 900;
       const int count = 99;
-      
+
       var answers = from outer in Enumerable.Range(start, count)
-                    from inner in Enumerable.Range(start, count)
-                    let product = outer * inner
-                    let palindrome = Convert.ToInt32(product.ToString().Reverse().Aggregate("", (current, z) => current + z))
-                    select (outer, inner, product, palindrome);
+        from inner in Enumerable.Range(start, count)
+        let product = outer * inner
+        let palindrome = Convert.ToInt32(product.ToString().Reverse().Aggregate("", (current, z) => current + z))
+        select (outer, inner, product, palindrome);
 
       return answers.Last(n => n.product == n.palindrome);
     }
