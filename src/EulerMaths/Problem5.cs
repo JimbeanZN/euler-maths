@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EulerMaths
 {
@@ -20,7 +19,18 @@ namespace EulerMaths
     protected internal override long Answer()
     {
       var divisorRange = Enumerable.Range(1, 19).ToList();
-      return Enumerable.Range(1, int.MaxValue).FirstOrDefault(i => divisorRange.All(divisor => i % divisor == 0));
+      var max = divisorRange.Max();
+      return CustomRange(max, n => n + max).FirstOrDefault(n => divisorRange.All(divisor => n % divisor == 0));
+    }
+
+    private static IEnumerable<long> CustomRange(long start, Func<long, long> step)
+    {
+      var n = start;
+      while (true)
+      {
+        yield return n;
+        n = step(n);
+      }
     }
   }
 }
