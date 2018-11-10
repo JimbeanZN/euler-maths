@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using EulerMaths.Helpers;
 
 namespace EulerMaths
 {
@@ -51,22 +49,23 @@ namespace EulerMaths
                                          "84580156166097919133875499200524063689912560717606" +
                                          "05886116467109405077541002256983155200055935729725" +
                                          "71636269561882670428252483600823257530420752963450";
-      var thirteenDigitCombinations = new List<int[]>();
+      var digitCombinations = new List<int[]>();
+      var combinationSize = 13;
 
-      for (var i = 0; i < thousandDigitNumber.Length - 13; i++)
+      for (var i = 0; i < thousandDigitNumber.Length - combinationSize; i++)
       {
-        var combination = new int[13];
-        for (var j = 0; j < 13; j++)
-        {
-          combination[j] = Convert.ToInt32(thousandDigitNumber[i + j].ToString());
-        }
+        var combination = new int[combinationSize];
+        for (var j = 0; j < combinationSize; j++) combination[j] = Convert.ToInt32(thousandDigitNumber[i + j].ToString());
 
         if (combination.All(n => n != 0))
-          thirteenDigitCombinations.Add(combination);
+        {
+          digitCombinations.Add(combination);
+        }
       }
 
-      return thirteenDigitCombinations
-        .Select(combination => new Tuple<int[], int>(combination, combination.Aggregate(1, (current, i) => current * i)))
+      return digitCombinations
+        .Select(combination =>
+          new Tuple<int[], int>(combination, combination.Aggregate(1, (current, i) => current * i)))
         .OrderByDescending(n => n.Item2)
         .Select(n => (n.Item1, n.Item2))
         .First();
