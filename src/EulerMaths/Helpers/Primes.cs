@@ -25,6 +25,9 @@ namespace EulerMaths.Helpers
     {
       var primeCandidate = 2L;
 
+      yield return primeCandidate;
+      primeCandidate++;
+
       while (true)
       {
         if (IsPrime(primeCandidate))
@@ -32,13 +35,19 @@ namespace EulerMaths.Helpers
           yield return primeCandidate;
         }
 
-        primeCandidate++;
+        primeCandidate += 2;
       }
     }
 
     private static bool IsPrime(long primeCandidate)
     {
-      return Enumerable.Range(2, (int) Math.Sqrt(primeCandidate) - 1).All(divisor => primeCandidate % divisor != 0);
+      for (var i = 3; i <= (long) Math.Ceiling(Math.Sqrt(primeCandidate)); i += 2)
+      {
+        if (primeCandidate % i == 0)
+          return false;
+      }
+
+      return primeCandidate != 1;
     }
   }
 }
