@@ -16,7 +16,7 @@ namespace EulerMaths
 
     protected internal override long Answer()
     {
-      return Enumerable.Range(1, 1000).Where(n => n % 3 == 0 || n % 5 == 0).Sum();
+      return Enumerable.Range(1, 999).Where(n => n % 3 == 0 || n % 5 == 0).Sum();
     }
   }
 }
