@@ -9,7 +9,7 @@ namespace EulerMaths
   ///   Largest product in a series
   ///   <para>https://projecteuler.net/problem=8</para>
   /// </summary>
-  internal class Problem8 : ProblemBase<(int[] numbers, int product)>
+  internal class Problem8 : ProblemBase<(int[] numbers, long product)>
   {
     public Problem8()
     {
@@ -27,7 +27,7 @@ namespace EulerMaths
         $"{Problem} - {Title}: {answer.product} ({answer.numbers.Aggregate("", (current, number) => current + (number + " * "))}). Execution time in ms: {watch.ElapsedMilliseconds}";
     }
 
-    protected internal override (int[] numbers, int product) Answer()
+    protected internal override (int[] numbers, long product) Answer()
     {
       const string thousandDigitNumber = "73167176531330624919225119674426574742355349194934" +
                                          "96983520312774506326239578318016984801869478851843" +
@@ -50,13 +50,11 @@ namespace EulerMaths
                                          "05886116467109405077541002256983155200055935729725" +
                                          "71636269561882670428252483600823257530420752963450";
       var digitCombinations = new List<int[]>();
-      var combinationSize = 13;
+      const int combinationSize = 13;
 
       for (var i = 0; i < thousandDigitNumber.Length - combinationSize; i++)
       {
-        var combination = new int[combinationSize];
-        for (var j = 0; j < combinationSize; j++) combination[j] = Convert.ToInt32(thousandDigitNumber[i + j].ToString());
-
+        var combination = thousandDigitNumber.ToCharArray(i, 13).Select(n => Convert.ToInt32(n.ToString())).ToArray();
         if (combination.All(n => n != 0))
         {
           digitCombinations.Add(combination);
@@ -65,7 +63,7 @@ namespace EulerMaths
 
       return digitCombinations
         .Select(combination =>
-          new Tuple<int[], int>(combination, combination.Aggregate(1, (current, i) => current * i)))
+          new Tuple<int[], long>(combination, combination.Aggregate(1L, (current, i) => current * i)))
         .OrderByDescending(n => n.Item2)
         .Select(n => (n.Item1, n.Item2))
         .First();
