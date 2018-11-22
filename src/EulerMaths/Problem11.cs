@@ -43,10 +43,30 @@ namespace EulerMaths
     
     protected internal override long Answer()
     {
+      var largestProduct = 0L;
+      for (var x = 0; x < 16; x++)
+      {
+        for (var y = 0; y < 16; y++)
+        {
+          var hor = Matrix[x, y] * Matrix[x + 1, y] * Matrix[x + 2, y] * Matrix[x + 3, y];
+          if (hor > largestProduct)
+            largestProduct = hor;
 
+          var ver = Matrix[x, y] * Matrix[x, y + 1] * Matrix[x, y + 2] * Matrix[x, y + 3];
+          if (ver > largestProduct)
+            largestProduct = ver;
 
+          var fs = Matrix[x, y + 3] * Matrix[x + 1, y + 2] * Matrix[x + 2, y + 1] * Matrix[x + 3, y];
+          if (fs > largestProduct)
+            largestProduct = fs;
 
-      return 0;
+          var bs = Matrix[x + 3, y] * Matrix[x + 2, y + 1] * Matrix[x + 1, y + 2] * Matrix[x, y + 3];
+          if (bs > largestProduct)
+            largestProduct = bs;
+        }
+      }
+
+      return largestProduct;
     }
   }
 }
