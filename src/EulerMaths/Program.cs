@@ -17,6 +17,7 @@ namespace EulerMaths
       Console.WriteLine(new Problem9().GetAnswer());
       Console.WriteLine(new Problem10().GetAnswer());
       Console.WriteLine(new Problem11().GetAnswer());
+      Console.WriteLine(new Problem12().GetAnswer());
       Console.ReadLine();
     }
   }
