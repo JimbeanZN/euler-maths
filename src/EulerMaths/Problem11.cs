@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Numerics;
-using EulerMaths.Helpers;
-
-namespace EulerMaths
+﻿namespace EulerMaths
 {
   /// <summary>
   ///   Largest product in a grid
@@ -11,12 +6,6 @@ namespace EulerMaths
   /// </summary>
   internal class Problem11 : ProblemBase<long>
   {
-    public Problem11()
-    {
-      Problem = "Problem 11";
-      Title = "Largest product in a grid";
-    }
-
     private readonly int[,] Matrix = new int[20, 20]
     {
       {08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08},
@@ -40,29 +29,41 @@ namespace EulerMaths
       {20, 73, 35, 29, 78, 31, 90, 01, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 05, 54},
       {01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48}
     };
-    
+
+    public Problem11()
+    {
+      Problem = "Problem 11";
+      Title = "Largest product in a grid";
+    }
+
     protected internal override long Answer()
     {
       var largestProduct = 0L;
       for (var x = 0; x < 16; x++)
+      for (var y = 0; y < 16; y++)
       {
-        for (var y = 0; y < 16; y++)
+        var hor = Matrix[x, y] * Matrix[x + 1, y] * Matrix[x + 2, y] * Matrix[x + 3, y];
+        if (hor > largestProduct)
         {
-          var hor = Matrix[x, y] * Matrix[x + 1, y] * Matrix[x + 2, y] * Matrix[x + 3, y];
-          if (hor > largestProduct)
-            largestProduct = hor;
+          largestProduct = hor;
+        }
 
-          var ver = Matrix[x, y] * Matrix[x, y + 1] * Matrix[x, y + 2] * Matrix[x, y + 3];
-          if (ver > largestProduct)
-            largestProduct = ver;
+        var ver = Matrix[x, y] * Matrix[x, y + 1] * Matrix[x, y + 2] * Matrix[x, y + 3];
+        if (ver > largestProduct)
+        {
+          largestProduct = ver;
+        }
 
-          var fs = Matrix[x, y + 3] * Matrix[x + 1, y + 2] * Matrix[x + 2, y + 1] * Matrix[x + 3, y];
-          if (fs > largestProduct)
-            largestProduct = fs;
+        var fs = Matrix[x, y + 3] * Matrix[x + 1, y + 2] * Matrix[x + 2, y + 1] * Matrix[x + 3, y];
+        if (fs > largestProduct)
+        {
+          largestProduct = fs;
+        }
 
-          var bs = Matrix[x + 3, y] * Matrix[x + 2, y + 1] * Matrix[x + 1, y + 2] * Matrix[x, y + 3];
-          if (bs > largestProduct)
-            largestProduct = bs;
+        var bs = Matrix[x + 3, y] * Matrix[x + 2, y + 1] * Matrix[x + 1, y + 2] * Matrix[x, y + 3];
+        if (bs > largestProduct)
+        {
+          largestProduct = bs;
         }
       }
 

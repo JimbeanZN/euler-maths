@@ -20,7 +20,7 @@ namespace EulerMaths
     {
       var divisorRange = Enumerable.Range(1, 10).ToList();
       var result = Enumerable.Range(1, int.MaxValue).FirstOrDefault(n => divisorRange.All(divisor => n % divisor == 0));
-      
+
       divisorRange = Enumerable.Range(11, 9).ToList();
       return CustomRange(result, n => n + result).FirstOrDefault(n => divisorRange.All(divisor => n % divisor == 0));
     }

@@ -16,9 +16,10 @@
     {
       const int gridSize = 20;
       long paths = 1;
- 
-      for (var i = 0; i < gridSize; i++) {
-        paths *= (2 * gridSize) - i;
+
+      for (var i = 0; i < gridSize; i++)
+      {
+        paths *= 2 * gridSize - i;
         paths /= i + 1;
       }
 

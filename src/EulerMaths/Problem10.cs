@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using EulerMaths.Helpers;
 
 namespace EulerMaths
@@ -15,7 +14,7 @@ namespace EulerMaths
       Problem = "Problem 10";
       Title = "Summation of primes";
     }
-    
+
     protected internal override long Answer()
     {
       return Primes.TakeWhile(n => n < 2000000).Sum();

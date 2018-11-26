@@ -42,10 +42,10 @@ namespace EulerMaths.Helpers
     private static bool IsPrime(long primeCandidate)
     {
       for (var i = 3; i <= (long) Math.Ceiling(Math.Sqrt(primeCandidate)); i += 2)
-      {
         if (primeCandidate % i == 0)
+        {
           return false;
-      }
+        }
 
       return primeCandidate != 1;
     }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
-using System.Text;
-using EulerMaths.Helpers;
 
 namespace EulerMaths
 {
@@ -21,7 +17,7 @@ namespace EulerMaths
 
     protected internal override string Answer()
     {
-      var numberStrings = new []
+      var numberStrings = new[]
       {
         "37107287533902102798797998220837590246510135740250",
         "46376937677490009712648124896970078050417018260538",

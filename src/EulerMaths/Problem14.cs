@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using EulerMaths.Helpers;
+﻿using System.Linq;
 
 namespace EulerMaths
 {
@@ -38,9 +32,11 @@ namespace EulerMaths
         sequenceCount++;
 
         if (candidate == 1)
+        {
           break;
+        }
 
-        candidate = (candidate % 2 == 0) ? EvenCollatz(candidate) : OddCollatz(candidate);
+        candidate = candidate % 2 == 0 ? EvenCollatz(candidate) : OddCollatz(candidate);
       }
 
       return sequenceCount;
@@ -53,7 +49,7 @@ namespace EulerMaths
 
     private static long OddCollatz(long n)
     {
-      return (3*n) + 1;
+      return 3 * n + 1;
     }
   }
 }

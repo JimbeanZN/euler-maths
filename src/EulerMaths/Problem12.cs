@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using EulerMaths.Helpers;
-
-namespace EulerMaths
+﻿namespace EulerMaths
 {
   /// <summary>
   ///   Highly divisible triangular number
@@ -22,7 +16,7 @@ namespace EulerMaths
     {
       var index = FindTriangleIndex(500);
 
-      return (index * (index + 1)) / 2;
+      return index * (index + 1) / 2;
     }
 
     private static long FindTriangleIndex(long limit)
@@ -44,7 +38,9 @@ namespace EulerMaths
     private static long GetNumberOfDivisors(long n)
     {
       if (n % 2 == 0)
+      {
         n = n / 2;
+      }
 
       var divisors = 1L;
       var count = 0;
