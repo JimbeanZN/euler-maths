@@ -22,18 +22,20 @@ namespace EulerMaths
 
     protected internal override long Answer()
     {
-      return Enumerable.Range(0, 1000000).AsParallel()
-        .Select(n => new Tuple<int, IEnumerable<long>>(n, GetCollatzSequence(n)))
-        .OrderBy(n => n.Item2.Count()).Last()
-        .Item1;
+      return Enumerable.Range(0, 1000000)
+        .AsParallel()
+        .Select(n => (n, GetCollatzSequenceCount(n)))
+        .AsSequential()
+        .OrderBy(n => n.Item2).Last()
+        .n;
     }
 
-    private IEnumerable<long> GetCollatzSequence(long candidate)
+    private static int GetCollatzSequenceCount(long candidate)
     {
-      var sequence = new List<long>();
+      var sequenceCount = 0;
       while (candidate >= 1)
       {
-        sequence.Add(candidate);
+        sequenceCount++;
 
         if (candidate == 1)
           break;
@@ -41,23 +43,17 @@ namespace EulerMaths
         candidate = (candidate % 2 == 0) ? EvenCollatz(candidate) : OddCollatz(candidate);
       }
 
-      return sequence;
+      return sequenceCount;
     }
 
     private static long EvenCollatz(long n)
     {
-      if(n%2 == 0)
-        return n / 2;
-
-      throw new ArgumentException();
+      return n / 2;
     }
 
     private static long OddCollatz(long n)
     {
-      if(n%2 != 0)
-        return (3*n) + 1;
-
-      throw new ArgumentException();
+      return (3*n) + 1;
     }
   }
 }
