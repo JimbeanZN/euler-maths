@@ -20,40 +20,57 @@ namespace EulerMaths
 
     protected internal override long Answer()
     {
-      var takeWhile = GetTriangleSequence().Take(10000).ToList();
+      var index = FindTriangleIndex(500);
 
-      return 0;
+      return (index * (index + 1)) / 2;
     }
 
-    private static IEnumerable<Tuple<long, int>> GetTriangleSequence()
+    private static long FindTriangleIndex(long limit)
     {
       var n = 1L;
-      var candidate = 1L;
+      var lnum = GetNumberOfDivisors(n);
+      var rnum = GetNumberOfDivisors(n + 1);
 
-      yield return new Tuple<long, int>(candidate, 1);
-      n++;
-      candidate += n;
-
-      while (true)
+      while (lnum * rnum < 500)
       {
-        var answers = new List<long>();
-        for (var i = 1L; i <= candidate; i++)
-        {
-          if (answers.Any(x => x == i))
-          {
-            break;
-          }
+        n++;
+        lnum = rnum;
+        rnum = GetNumberOfDivisors(n + 1);
+      }
 
-          if (candidate % i != 0) continue;
-          answers.Add(i);
-          answers.Add(candidate / i);
+      return n;
+    }
+
+    private static long GetNumberOfDivisors(long n)
+    {
+      if (n % 2 == 0)
+        n = n / 2;
+
+      var divisors = 1L;
+      var count = 0;
+      while (n % 2 == 0)
+      {
+        count += 1;
+        n = n / 2;
+      }
+
+      divisors = divisors * (count + 1);
+      var p = 3;
+
+      while (n != 1)
+      {
+        count = 0;
+        while (n % p == 0)
+        {
+          count += 1;
+          n = n / p;
         }
 
-        yield return new Tuple<long, int>(candidate, answers.Count);
-
-        n++;
-        candidate += n;
+        divisors = divisors * (count + 1);
+        p += 2;
       }
+
+      return divisors;
     }
   }
 }
