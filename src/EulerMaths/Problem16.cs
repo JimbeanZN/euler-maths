@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace EulerMaths
@@ -19,9 +20,27 @@ namespace EulerMaths
     {
       const int baseValue = 2;
       const int power = 1000;
-      var calculatedValue = Math.Pow(baseValue, power).ToString().ToCharArray();
 
-      return calculatedValue.Sum(value => Convert.ToInt32(value.ToString()));
+      var answer = baseValue.ToString();
+      for (var i = 0; i < power - 1; i++)
+      {
+        var carryOver = 0L;
+        var newAnswer = "";
+        for (var j = answer.Length - 1; j >= 0; j--)
+        {
+          var currentWorkingDigit = Convert.ToInt32(answer[j].ToString());
+          var newWorkingAnswer = currentWorkingDigit * baseValue + carryOver;
+
+          var lastCharOfWorkingAnswer = newWorkingAnswer.ToString().Last().ToString();
+          newAnswer = lastCharOfWorkingAnswer + newAnswer;
+
+          carryOver = (newWorkingAnswer - Convert.ToInt32(lastCharOfWorkingAnswer)) / 10;
+        }
+
+        answer = carryOver != 0 ? carryOver + newAnswer : newAnswer;
+      }
+
+      return answer.ToCharArray().Sum(n => Convert.ToInt32(n.ToString()));
     }
   }
 }
