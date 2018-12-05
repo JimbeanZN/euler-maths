@@ -17,15 +17,31 @@ namespace EulerMaths
 
     protected internal override long Answer()
     {
-      const long n = 10;
-      var temp = n;
+      const long n = 100;
+      var answer = n.ToString();
 
       for (var i = 1; i < n; i++)
       {
-        temp *= (n - i);
+        var next = n - i;
+
+        var carryOver = 0L;
+        var newAnswer = "";
+        for (var j = answer.Length - 1; j >= 0; j--)
+        {
+          var currentWorkingDigit = Convert.ToInt32(answer[j].ToString());
+          var newWorkingAnswer = currentWorkingDigit * next + carryOver;
+
+          var lastCharOfWorkingAnswer = newWorkingAnswer.ToString().Last().ToString();
+          newAnswer = lastCharOfWorkingAnswer + newAnswer;
+
+          carryOver = (newWorkingAnswer - Convert.ToInt32(lastCharOfWorkingAnswer)) / 10;
+        }
+
+        answer = carryOver != 0 ? carryOver + newAnswer : newAnswer;
+
       }
 
-      return temp.ToString().ToCharArray().Sum(c => Convert.ToInt32(c.ToString()));
+      return answer.ToCharArray().Sum(c => Convert.ToInt32(c.ToString()));
     }
   }
 }
