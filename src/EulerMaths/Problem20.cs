@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using EulerMaths.Helpers;
 
 namespace EulerMaths
 {
@@ -18,28 +19,8 @@ namespace EulerMaths
     protected internal override long Answer()
     {
       const long n = 100;
-      var answer = n.ToString();
-
-      for (var i = 1; i < n; i++)
-      {
-        var next = n - i;
-
-        var carryOver = 0L;
-        var newAnswer = "";
-        for (var j = answer.Length - 1; j >= 0; j--)
-        {
-          var currentWorkingDigit = Convert.ToInt32(answer[j].ToString());
-          var newWorkingAnswer = currentWorkingDigit * next + carryOver;
-
-          var lastCharOfWorkingAnswer = newWorkingAnswer.ToString().Last().ToString();
-          newAnswer = lastCharOfWorkingAnswer + newAnswer;
-
-          carryOver = (newWorkingAnswer - Convert.ToInt32(lastCharOfWorkingAnswer)) / 10;
-        }
-
-        answer = carryOver != 0 ? carryOver + newAnswer : newAnswer;
-
-      }
+      var answer = LargeNumberMultiplication.Calculate(n, n, 1, iterationEnd => iterationEnd,
+        (nextMultiplier, iteration) => nextMultiplier - iteration);
 
       return answer.ToCharArray().Sum(c => Convert.ToInt32(c.ToString()));
     }
