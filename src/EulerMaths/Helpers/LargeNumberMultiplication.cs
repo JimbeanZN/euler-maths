@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EulerMaths.Helpers
 {
@@ -29,7 +27,6 @@ namespace EulerMaths.Helpers
         }
 
         answer = carryOver != 0 ? carryOver + newAnswer : newAnswer;
-
       }
 
       return answer;
