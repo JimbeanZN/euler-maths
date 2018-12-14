@@ -6,4 +6,8 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Files\" />
+  </ItemGroup>
+
 </Project>
