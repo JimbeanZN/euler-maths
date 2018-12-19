@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EulerMaths
 {
@@ -26,12 +22,8 @@ namespace EulerMaths
       var abundantSums = new List<int>();
 
       for (var i = 0; i < abundantNumbers.Count(); i++)
-      {
-        for (var j = i; j < abundantNumbers.Count(); j++)
-        {
-          abundantSums.Add(abundantNumbers[i] + abundantNumbers[j]);
-        }
-      }
+      for (var j = i; j < abundantNumbers.Count(); j++)
+        abundantSums.Add(abundantNumbers[i] + abundantNumbers[j]);
 
       return baseNumbers.Except(abundantSums).Sum();
     }

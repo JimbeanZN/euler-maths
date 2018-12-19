@@ -28,12 +28,10 @@ namespace EulerMaths
         var n = range[i].Number;
 
         for (var j = 1; j <= i; j++)
-        {
           if (n % j == 0)
           {
             range[i].Divisors.Add(j);
           }
-        }
       }
 
       var amicableNumbers = new List<Problem21Divisor>();
