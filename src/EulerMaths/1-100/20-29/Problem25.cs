@@ -20,10 +20,10 @@ namespace EulerMaths
     protected internal override string Answer()
     {
       StringFibonacci().First(n => n.ToString().Length == 1000);
-      return Index.ToString();
+      return _index.ToString();
     }
 
-    private static long Index = 1;
+    private static long _index = 1;
 
     private static IEnumerable<string> StringFibonacci()
     {
@@ -57,7 +57,7 @@ namespace EulerMaths
 
         var x = carryOver != 0 ? carryOver + newAnswer : newAnswer;
 
-        Index++;
+        _index++;
         yield return x;
 
         first = second;
