@@ -6,7 +6,7 @@ namespace EulerMaths
   {
     private static void Main(string[] args)
     {
-      Console.WriteLine(new Problem24().GetAnswer());
+      Console.WriteLine(new Problem25().GetAnswer());
       Console.ReadLine();
     }
   }

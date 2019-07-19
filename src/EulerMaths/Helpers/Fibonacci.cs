@@ -21,6 +21,11 @@ namespace EulerMaths.Helpers
       return GetFibonacciSequence().TakeWhile(predicate);
     }
 
+    public static long First(Func<long, bool> predicate)
+    {
+      return GetFibonacciSequence().First(predicate);
+    }
+
     private static IEnumerable<long> GetFibonacciSequence()
     {
       var first = 0L;
